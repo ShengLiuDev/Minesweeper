@@ -53,20 +53,6 @@ public:
 	int seconds = 0;
 	int tempSeconds = 0;
 
-
-	// for the rf
-	//vector<vector<bool>> mineTile;
-	//vector<vector<bool>> flagOnTile;
-	//vector<vector<bool>> hiddenTile;
-	//vector<vector<int>> numBombsNearby;
-
-	//// nullptr is out of bounds 
-	//// temp for flag placement, later implement in the tiles class
-	//// check geeksforgeeks for implementation vector info
-	//vector<sf::Sprite> mineSprites;
-	//vector<sf::Sprite> flagsprites;
-	//vector<sf::Sprite> revealedSprites;
-	//vector<sf::Sprite> nearbyBombs;
 	Window()
 	{
 
@@ -93,28 +79,3 @@ public:
 
 	sf::Sprite getRevealedSprite(int x, int y);
 };
-
-//class Mines
-//{
-//public:
-//	int mine_count = 50;
-//	int minesAdjacent;
-//	int minesFound = 0;
-//	int minesPlaced = 0;
-//	int xcoord;
-//	int ycoord;
-//
-//	Mines()
-//	{
-//
-//	}
-//
-//	Mines(int mine_count, int minesAdjacent, int minesFound, int minesPlaced, int columns, int rows, int xcoord, int ycoord, vector<vector<bool>> mineTile);
-//
-//	
-//
-//private:
-//	// placeholder for now, maybe will need for bool values of mines 
-//
-//
-//};

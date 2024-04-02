@@ -40,11 +40,6 @@ int main()
     {
         beginBoard.gameWindow(columns, rows, numMines, currPlayer);
         bool leader = leaderBoard.leaderboardWindow(columns, rows);
-        //if (leader)
-        //{
-        //    // sf::RenderWindow leaderboardwindow(sf::VideoMode(columns * 16, (rows * 16) + 50));
-        //    leaderBoard.leaderboardWindow(columns, rows);
-        //}
         
     }
 };

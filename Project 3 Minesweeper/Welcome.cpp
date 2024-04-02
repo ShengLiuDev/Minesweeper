@@ -889,34 +889,10 @@ void Window::gameWindow(int columns, int rows, int numMines, string currPlayer)
 
             }
 
-
-
-
-            /*cout << "beginning mine loop" << endl;
-            for (int i = 0; i < columns; i++)
-            {
-                for (int j = 0; j < rows; j++)
-                {
-                    if (mineTile[i][j])
-                    {
-                        mineSprite.setPosition(i * 32, j * 32);
-                        gameWindow.draw(mineSprite);
-                    }
-
-                }
-            }
-            cout << "exitting the mineloop" << endl;*/
-
-
-
-
         }
         if (leaderboardWindowOpen)
         {
             cout << "we have reached checkpoint" << endl;
-            /*leaderboardWindowOpen = false;
-            beginClock = false;
-            gamePaused = true;*/
             leaderboardWindow(columns, rows);
             std::cout << "the game has been paused" << endl;
         }
@@ -931,11 +907,6 @@ void Window::gameWindow(int columns, int rows, int numMines, string currPlayer)
             mineCounter = 0;
             cout << "winner winner chicken dinner" << endl;
             playerNames.push_back(currPlayer);
-            // testing for game winner names
-            /*for (int i = 0; i < playerNames.size(); i++)
-            {
-                cout << "All Player Names Who Have Won: " << playerNames[i] << endl;
-            }*/
             cout << "current seconds: " << seconds << endl;
             winnerTimeSeconds += tempWinner ? "" : to_string(seconds);
             winnerMinutes = stoi(winnerTimeSeconds) / 60;
@@ -952,7 +923,6 @@ void Window::gameWindow(int columns, int rows, int numMines, string currPlayer)
             cout << "Total Winner Minutes: " << winnerMinutes << endl;
             cout << "Total Winner Seconds: " << winnerSeconds << endl;
             cout << "winnetCompleteTime currently is: " << winnerCompleteTime << endl;
-            // so seconds is not added multiple times to the winnerTime string
 
             cout << "Total Seconds Elapsed: " << winnerTimeSeconds << endl;
 
@@ -964,13 +934,10 @@ void Window::gameWindow(int columns, int rows, int numMines, string currPlayer)
                     sf::Sprite tempflagSprite = flagsprite;
                     tempflagSprite.setPosition(i * 32, j * 32);
                     flagsprites.push_back(tempflagSprite);
-
-                    //cout << "flag on tile: " << i << j << endl;
                 }
             }
 
         }
-        // right here is end of first while loop
 
         // renders the hidden sprites
         gameWindow.clear(sf::Color::White);
@@ -987,7 +954,6 @@ void Window::gameWindow(int columns, int rows, int numMines, string currPlayer)
         for (int i = 0; i < flagsprites.size(); i++)
         {
             sf::Vector2f tempFlagSprites = flagsprites[i].getPosition();
-            //cout << "tempx: " << tempFlagSprites.x << "\ttempy: " << tempFlagSprites.y << endl;
             gameWindow.draw(flagsprites[i]);
         }
 
@@ -1004,12 +970,10 @@ void Window::gameWindow(int columns, int rows, int numMines, string currPlayer)
             sf::Vector2f tempMineSprites = mineSprites[i].getPosition();
             if (hiddenTile[tempMineSprites.x / 32][tempMineSprites.y / 32] == false || debugmode == true || gamelose == true)
             {
-                //cout << "entered the minesprite" << endl;
                 gameWindow.draw(mineSprites[i]);
             }
         }
 
-        // cout << "nearbyBombs value: " << nearbyBombs.size() << endl;
         // displays the nums or "bombs" nearby
         for (int i = 0; i < nearbyBombs.size(); i++)
         {
@@ -1017,10 +981,6 @@ void Window::gameWindow(int columns, int rows, int numMines, string currPlayer)
             sf::Vector2f tempTile = nearbyBombs[i].getPosition();
             if (hiddenTile[tempTile.x / 32][tempTile.y / 32] == false)
             {
-
-                //cout << "hiddenTile x: " << tempTile.x / 32 << "\thiddenTile y: " << tempTile.y / 32 << "\ti value: " << i << endl;
-                //cout << "entered the minesprite" << endl;
-                //nearbyBombs[i].setPosition(32, 32);
                 gameWindow.draw(nearbyBombs[i]);
             }
         }
@@ -1045,7 +1005,6 @@ void Window::gameWindow(int columns, int rows, int numMines, string currPlayer)
 
         while (tempDigitCount < 2)
         {
-            //cout << "Temp NUM IS: " << tempNum << endl;
             int tempDigit = tempNum % 10;
             tempNum /= 10;
 
@@ -1056,9 +1015,6 @@ void Window::gameWindow(int columns, int rows, int numMines, string currPlayer)
             tempDigitCount++;
         }
 
-
-
-        /*if (currentMinuteClock.getElapsedTime())*/
         // game loss condition
 
         if (gamelose == true)
@@ -1087,18 +1043,6 @@ void Window::gameWindow(int columns, int rows, int numMines, string currPlayer)
         }
         gameWindow.draw(playsprite);
         gameWindow.draw(leaderboardsprite);
-        //gameWindow.draw(counterSprite);
-
-        /*gameWindow.draw(digitOneSprite);
-        gameWindow.draw(digitTwoSprite);
-        gameWindow.draw(digitThreeSprite);
-        gameWindow.draw(digitFourSprite);
-        gameWindow.draw(digitFiveSprite);
-        gameWindow.draw(digitSixSprite);
-        gameWindow.draw(digitSevenSprite);
-        gameWindow.draw(digitEightSprite);*/
-        //gameWindow.draw(secondSprite);
-        //gameWindow.draw(minuteSprite);
 
         // TIMER, DO NOT MESS WITH ANYMORE DO NOT MOVE 
         int numDigits = 2;
@@ -1114,7 +1058,6 @@ void Window::gameWindow(int columns, int rows, int numMines, string currPlayer)
             sf::IntRect secondTextureRect(tempDigit * 21, 0, 21, 32);
             secondSprite.setTextureRect(secondTextureRect);
             secondSprite.setPosition(secondPosition.x + (1 - tempTimerCountSecond) * 21, secondPosition.y);
-            //cout << "secondPosition.x: " << secondPosition.x << "\tsecondPosition.y: " << secondPosition.y << endl;
             gameWindow.draw(secondSprite);
             tempTimerCountSecond++;
         }
@@ -1130,7 +1073,6 @@ void Window::gameWindow(int columns, int rows, int numMines, string currPlayer)
             sf::IntRect minuteTextureRect(tempDigit * 21, 0, 21, 32);
             minuteSprite.setTextureRect(minuteTextureRect);
             minuteSprite.setPosition(minutePosition.x + (1 - tempTimerCountMinute) * 21, minutePosition.y);
-            // cout << "minutePosition.x: " << secondPosition.x << "\tminutePosition.y: " << secondPosition.y << endl;
             gameWindow.draw(minuteSprite);
             tempTimerCountMinute++;
         }
@@ -1138,11 +1080,9 @@ void Window::gameWindow(int columns, int rows, int numMines, string currPlayer)
         // restarts the clock
         if (beginClock == true)
         {
-            //cout << "entering the beginclock if statement" << endl;
             auto end = chrono::steady_clock::now();
             chrono::duration<double> elapsed_seconds = end - start;
             seconds = (int)elapsed_seconds.count() + tempSeconds;
-            //cout << "time: " << seconds << "s\n";
         }
 
 
@@ -1156,8 +1096,6 @@ void Window::gameWindow(int columns, int rows, int numMines, string currPlayer)
 void Window::rf(int x, int y, sf::Sprite& revealedSprite, vector<vector<bool>>& hiddenTile, vector<sf::Sprite>& revealedSprites,
     vector<vector<bool>>& flagOnTile, vector<vector<int>>& numBombsNearby)
 {
-    //cout << "hiddentile value" << (hiddenTile[x][y] == false) << endl;
-    //cout << "flag on tile value" << (flagOnTile[x][y] == true) << endl;
     cout << "x value: " << x << "\ty value: " << y << endl;
     if ((x < 0 || y < 0 || x >= columns || y >= rows) || hiddenTile[x][y] == false || flagOnTile[x][y] == true)
     {
@@ -1181,8 +1119,6 @@ void Window::rf(int x, int y, sf::Sprite& revealedSprite, vector<vector<bool>>& 
     rf(x, y - 1, revealedSprite, hiddenTile, revealedSprites, flagOnTile, numBombsNearby);
     rf(x, y + 1, revealedSprite, hiddenTile, revealedSprites, flagOnTile, numBombsNearby);
 
-
-    // hidden tiles, x and y clicked on, revealed tiles array
 }
 
 bool Window::leaderboardWindow(int columns, int rows)
@@ -1228,7 +1164,6 @@ bool Window::leaderboardWindow(int columns, int rows)
                 << std::setfill('0') << std::setw(2) << seconds;
 
             playerText.setString(playerText.getString() + "\n" + to_string(numLines) + ".\t " + timeStream.str() + "\t" + playerNameinList + "\n");
-            //playerText.setPosition(sf::Vector2f(columns / 2.0f - playerCenter.width / 2.0f, (rows / 2.0f)));
 
 
         }
